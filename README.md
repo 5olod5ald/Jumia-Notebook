@@ -1,6 +1,6 @@
-# Jumia Product Price Prediction
+# Jumia Product Price Prediction & Price Evaluation
 
-This project focuses on predicting the prices of products from **Jumia** using machine learning. It includes data scraping, cleaning, visualization, and building predictive models.
+This project focuses on predicting product prices from **Jumia** and evaluating if the discounted price is reasonable. It includes data scraping, cleaning, visualization, and building predictive models.
 
 ---
 
@@ -16,10 +16,36 @@ This project focuses on predicting the prices of products from **Jumia** using m
   - Explored distributions of product prices  
   - Analyzed relationships between features and prices using plots  
 
-- **Machine Learning Models:**  
-  - **XGBoost Regressor**  
-  - **Random Forest Regressor**  
-  - **Ensemble Model:** Average of XGBoost and Random Forest predictions  
+- **Data Visualization:**  
+  - Explored distributions of product prices  
+  - Analyzed relationships between features and prices using plots  
+  - **Correlation Heatmap:** Shows correlation strength between numeric variables (`price`, `preprice`, `discount`). Helps understand if expensive products get bigger discounts.  
+  - **Word Cloud of Brands:** Shows the most popular brands visually (bigger word = more products). Helps quickly identify brand popularity.
+
+### Sample Visualizations
+
+**Correlation Heatmap:**  
+![Correlation Heatmap](C:\Users\khloud\Desktop\jumia\output 1.png)
+
+**Word Cloud of Brands:**  
+![Word Cloud](images/wordcloud_brands.png)
+
+> *(Save your plots in an `images/` folder for this to work)*
+
+---
+
+## Machine Learning Models  
+
+- **XGBoost Regressor**  
+- **Random Forest Regressor**  
+- **Ensemble Model:** Average of XGBoost and Random Forest predictions  
+
+### Price Evaluation
+
+The models not only predict the product price but also evaluate if the discounted price is reasonable:
+
+- If `Final Ensemble Prediction >= Discounted Price`: The discount is **good** and the price is reasonable.  
+- If `Final Ensemble Prediction < Discounted Price`: The discount is **not enough** and the price is high.  
 
 ---
 
@@ -31,7 +57,7 @@ This project focuses on predicting the prices of products from **Jumia** using m
     - Visualization  
     - Model training  
 
-2. Use the **Prediction Section** to input product details and get predicted prices:
+2. Use the **Prediction Section** to input product details and get predicted prices and evaluation:
     ```python
     brand = input("Brand: ")
     material = input("Main Material: ")
@@ -42,6 +68,12 @@ This project focuses on predicting the prices of products from **Jumia** using m
     print("XGBoost Prediction:", round(xgb_p, 2))
     print("RandomForest Prediction:", round(rf_p, 2))
     print("Ensemble Prediction:", round(final_p, 2))
+    
+    discounted_price = preprice * (1 - discount/100)
+    if final_p >= discounted_price:
+        print("✅ Discounted price is reasonable")
+    else:
+        print("⚠️ Discounted price is too high")
     ```
 
 ---
@@ -50,7 +82,11 @@ This project focuses on predicting the prices of products from **Jumia** using m
 
 - `Notbook.ipynb` – Main Jupyter Notebook with all code and analysis  
 - `jumia_shoes_cleaned.csv` – Cleaned dataset used for modeling  
+- `images/` – Folder containing all visualization plots  
 
 ---
 
+## Author
 
+**Kholod Khaled**  
+Email: kholod1942006@gmail.com

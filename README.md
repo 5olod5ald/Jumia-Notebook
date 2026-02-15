@@ -1,69 +1,121 @@
-# Jumia Product Price Prediction & Price Evaluation
+# 🛍️ Jumia Product Price Prediction & Discount Evaluation
 
-This project focuses on predicting product prices from Jumia and evaluating if the discounted price is reasonable. It includes data scraping, cleaning, visualization, and building predictive models.
+## 📌 Project Overview
 
-## Project Overview
+This project builds a Machine Learning system to predict product prices from Jumia and evaluate whether the discounted price is reasonable.
 
-**Data Source:** Scraped from Jumia website.
+The objective is not only to estimate the fair market value of a product but also to determine if the applied discount truly represents a good deal for customers.
 
-**Data Cleaning:**
-- Handled missing values
-- Encoded categorical variables (Brand, Material, Gender)
-- Created additional features for better prediction
+---
 
-## Data Visualization
+## 🎯 Objectives
 
-Explored distributions of product prices and analyzed relationships between features and prices using plots.
+- Predict product prices using machine learning models.
+- Compare predicted fair price with the discounted price.
+- Evaluate whether the discount is reasonable.
+- Provide an interactive price prediction interface.
 
-### Correlation Heatmap
-Shows correlation strength between numeric variables (`price`, `preprice`, `discount`). Helps understand if expensive products get bigger discounts.
+---
 
-![Correlation Heatmap](images/output1.png)
+## 📊 Dataset
 
-### Word Cloud of Brands
-Shows the most popular brands visually (bigger word = more products). Helps quickly identify brand popularity.
+- **Source:** Scraped from Jumia website  
+- **Category:** Shoes products  
+- **Key Features:**
+  - Brand
+  - Main Material
+  - Gender
+  - Original Price (Preprice)
+  - Discount Percentage
+  - Final Price
 
-![Word Cloud of Brands](images/output2.png)
+---
 
-## Machine Learning Models
+## 🧹 Data Preprocessing
+
+The dataset was prepared using the following steps:
+
+- Handling missing values
+- Encoding categorical variables (Brand, Material, Gender)
+- Feature engineering for better prediction
+- Preparing data for training and testing
+
+---
+
+## 📈 Exploratory Data Analysis
+
+Exploratory analysis was performed to understand:
+
+- Price distribution patterns
+- Correlation between price, original price, and discount
+- Brand popularity and frequency
+- Impact of discount percentage on final price
+
+These insights helped improve feature selection and model performance.
+
+## 📊 Data Visualization
+
+To better understand pricing behavior and discount patterns, exploratory data analysis (EDA) was performed using visualizations.
+
+### 🔥 Correlation Heatmap
+
+This heatmap shows the correlation between numerical variables such as:
+
+- `price`
+- `preprice`
+- `discount`
+
+It helps identify:
+- Whether higher original prices receive larger discounts
+- The strength of relationship between discount percentage and final price
+- Pricing behavior patterns across products
+
+![Correlation Heatmap](images/heatmap.png)
+
+---
+
+### ☁️ Word Cloud of Brands
+
+The Word Cloud visualizes brand frequency in the dataset.
+
+- Larger words represent brands with more products.
+- Helps identify dominant brands in the marketplace.
+- Provides insight into brand distribution within the dataset.
+
+![Word Cloud of Brands](images/wordcloud.png)
+
+
+---
+
+## 🤖 Machine Learning Models
+
+The following regression models were implemented:
 
 - **XGBoost Regressor**
 - **Random Forest Regressor**
-- **Ensemble Model:** Average of XGBoost and Random Forest predictions
+- **Ensemble Model** (Average of XGBoost and Random Forest predictions)
 
-## Price Evaluation
+The ensemble approach improves prediction stability and overall performance.
 
-The models not only predict the product price but also evaluate if the discounted price is reasonable:
+---
 
-- If `Final Ensemble Prediction >= Discounted Price`: ✅ Discount is good and price is reasonable.
-- If `Final Ensemble Prediction < Discounted Price`: ⚠️ Discount is not enough and price is high.
+## 💡 Discount Evaluation Logic
 
-## How to Use
+After predicting the fair product price using the ensemble model:
 
-Open the Jupyter Notebook (`Notbook.ipynb`) to see the full workflow:
+- If  
+  `Predicted Price ≥ Discounted Price`  
+  → ✅ The discount is considered reasonable.
 
-- Data scraping
-- Cleaning and preprocessing
-- Visualization
-- Model training
+- If  
+  `Predicted Price < Discounted Price`  
+  → ⚠️ The discount may not be sufficient and the product could be overpriced.
 
-Use the **Prediction Section** to input product details and get predicted prices and evaluation:
+This adds a business insight layer beyond traditional price prediction.
 
-```python
-brand = input("Brand: ")
-material = input("Main Material: ")
-gender = input("Gender: ")
-preprice = float(input("Original price (preprice): "))
-discount = float(input("Discount %: "))
+---
 
-xgb_p, rf_p, final_p = predict_price(brand, material, gender, preprice, discount)
+## 🖥️ How to Run the Project
 
-print("XGBoost Prediction:", round(xgb_p, 2))
-print("RandomForest Prediction:", round(rf_p, 2))
-print("Ensemble Prediction:", round(final_p, 2))
+1. Open the notebook:
 
-discounted_price = preprice * (1 - discount/100)
-if final_p >= discounted_price:
-    print("✅ Discounted price is reasonable")
-else:
-    print("⚠️ Discounted price is too high")

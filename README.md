@@ -72,7 +72,7 @@ It helps answer important analytical questions:
 
 By examining correlation strength, we gain insight into pricing behavior and promotional strategies used in the marketplace.
 
-![Correlation Heatmap](images/heatmap.png)
+![Correlation Heatmap]([images/heatmap.png](https://github.com/5olod5ald/Jumia-Notebook/blob/35057e3542e3f8995216bb32d55fa876668fdd72/output1.png))
 
 ---
 

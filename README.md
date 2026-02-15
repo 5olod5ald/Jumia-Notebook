@@ -86,7 +86,7 @@ The Word Cloud visualizes brand frequency within the dataset.
 
 This provides a quick visual understanding of market dominance and brand distribution.
 
-![Word Cloud of Brands](images/wordcloud.png)
+![Word Cloud of Brands](https://github.com/5olod5ald/Jumia-Notebook/blob/6f9dea72984ef7a05f1ba3424511f16cfbdaa9fc/output2.png)
 
 ---
 

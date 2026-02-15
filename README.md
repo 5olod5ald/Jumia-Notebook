@@ -24,11 +24,12 @@ This project focuses on predicting product prices from **Jumia** and evaluating 
 
 ### Sample Visualizations
 
+
 **Correlation Heatmap:**  
-![Correlation Heatmap](C:\Users\khloud\Desktop\jumia\output 1.png)
+![Correlation Heatmap](output1.png)
 
 **Word Cloud of Brands:**  
-![Word Cloud](images/wordcloud_brands.png)
+![Word Cloud](output2.png)
 
 > *(Save your plots in an `images/` folder for this to work)*
 

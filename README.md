@@ -6,6 +6,8 @@ This project builds a Machine Learning system to predict product prices from Jum
 
 The objective is not only to estimate the fair market value of a product but also to determine if the applied discount truly represents a good deal for customers.
 
+This project combines web scraping, data preprocessing, exploratory data analysis, and regression modeling to deliver both technical and business insights.
+
 ---
 
 ## 🎯 Objectives
@@ -14,6 +16,7 @@ The objective is not only to estimate the fair market value of a product but als
 - Compare predicted fair price with the discounted price.
 - Evaluate whether the discount is reasonable.
 - Provide an interactive price prediction interface.
+- Extract business insights from pricing behavior.
 
 ---
 
@@ -21,13 +24,14 @@ The objective is not only to estimate the fair market value of a product but als
 
 - **Source:** Scraped from Jumia website  
 - **Category:** Shoes products  
-- **Key Features:**
-  - Brand
-  - Main Material
-  - Gender
-  - Original Price (Preprice)
-  - Discount Percentage
-  - Final Price
+
+### Key Features:
+- Brand
+- Main Material
+- Gender
+- Original Price (Preprice)
+- Discount Percentage
+- Final Price
 
 ---
 
@@ -40,54 +44,64 @@ The dataset was prepared using the following steps:
 - Feature engineering for better prediction
 - Preparing data for training and testing
 
+These preprocessing steps improved model stability and prediction accuracy.
+
 ---
 
-## 📈 Exploratory Data Analysis
+# 📈 Data Visualization
 
-Exploratory analysis was performed to understand:
+To better understand pricing behavior and discount strategies, exploratory data analysis (EDA) was conducted using visualizations.
 
-- Price distribution patterns
-- Correlation between price, original price, and discount
-- Brand popularity and frequency
-- Impact of discount percentage on final price
+These visual insights helped uncover relationships between product features and pricing patterns before building the machine learning models.
 
-These insights helped improve feature selection and model performance.
+---
 
-## 📊 Data Visualization
+## 🔥 Correlation Heatmap
 
-To better understand pricing behavior and discount patterns, exploratory data analysis (EDA) was performed using visualizations.
+The correlation heatmap analyzes the relationships between key numerical variables:
 
-### 🔥 Correlation Heatmap
+- Final Price
+- Original Price (Preprice)
+- Discount Percentage
 
-This heatmap shows the correlation between numerical variables such as:
+It helps answer important analytical questions:
 
-- `price`
-- `preprice`
-- `discount`
+- Do higher-priced products receive larger discounts?
+- How strongly does the discount percentage affect the final price?
+- Is original price a strong predictor of final price?
 
-It helps identify:
-- Whether higher original prices receive larger discounts
-- The strength of relationship between discount percentage and final price
-- Pricing behavior patterns across products
+By examining correlation strength, we gain insight into pricing behavior and promotional strategies used in the marketplace.
 
 ![Correlation Heatmap](images/heatmap.png)
 
 ---
 
-### ☁️ Word Cloud of Brands
+## ☁️ Word Cloud of Brands
 
-The Word Cloud visualizes brand frequency in the dataset.
+The Word Cloud visualizes brand frequency within the dataset.
 
-- Larger words represent brands with more products.
-- Helps identify dominant brands in the marketplace.
-- Provides insight into brand distribution within the dataset.
+- Larger brand names represent higher product frequency.
+- Highlights dominant brands in the market.
+- Helps identify brand concentration and competitive presence.
+
+This provides a quick visual understanding of market dominance and brand distribution.
 
 ![Word Cloud of Brands](images/wordcloud.png)
 
+---
+
+## 📌 Key Insights from Visualization
+
+- Original price has a strong influence on final selling price.
+- Discount percentage plays a measurable role in pricing adjustments.
+- A few brands dominate product listings, indicating potential market concentration.
+- Pricing patterns suggest strategic discounting rather than random reductions.
+
+These insights guided feature selection and model development.
 
 ---
 
-## 🤖 Machine Learning Models
+# 🤖 Machine Learning Models
 
 The following regression models were implemented:
 
@@ -99,23 +113,67 @@ The ensemble approach improves prediction stability and overall performance.
 
 ---
 
-## 💡 Discount Evaluation Logic
+# 💡 Discount Evaluation Logic
 
 After predicting the fair product price using the ensemble model:
 
 - If  
-  `Predicted Price ≥ Discounted Price`  
+  **Predicted Price ≥ Discounted Price**  
   → ✅ The discount is considered reasonable.
 
 - If  
-  `Predicted Price < Discounted Price`  
+  **Predicted Price < Discounted Price**  
   → ⚠️ The discount may not be sufficient and the product could be overpriced.
 
 This adds a business insight layer beyond traditional price prediction.
 
 ---
 
-## 🖥️ How to Run the Project
+# 🖥️ How to Run the Project
 
 1. Open the notebook:
 
+Notebooks/Notebook_jumia.ipynb
+
+
+2. Run all cells to:
+   - Load and clean the dataset
+   - Train machine learning models
+   - Generate predictions
+
+3. Use the interactive prediction section to evaluate product pricing.
+
+---
+
+# 📁 Project Structure
+
+Jumia-Notebook/
+│
+├── Data/
+│ └── jumia_shoes_cleaned.csv
+│
+├── Notebooks/
+│ └── Notebook_jumia.ipynb
+│
+├── images/
+│ ├── heatmap.png
+│ └── wordcloud.png
+│
+├── README.md
+└── requirements.txt
+
+
+---
+
+# 🛠️ Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- WordCloud
+- Scikit-learn
+- XGBoost
+
+---
